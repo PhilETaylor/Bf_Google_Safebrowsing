@@ -6,12 +6,12 @@
  * @link http://www.blueflameit.ltd.uk
  * @author Phil Taylor / Blue Flame IT Ltd.
  *
- * bfFramework is free software: you can redistribute it and/or modify
+ * Bf_Google_Safebrowsing is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * bfFramework is distributed in the hope that it will be useful,
+ * Bf_Google_Safebrowsing is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -159,13 +159,13 @@ class Bf_Google_Safebrowsing {
 				$listed = TRUE;
 				break;
 			case 400 :
-				throw new Exception ( 'Bad Request Ñ The HTTP request was not correctly formed.', 400 );
+				throw new Exception ( 'Bad Request - The HTTP request was not correctly formed.', 400 );
 				break;
 			case 401 :
-				throw new Exception ( 'Not Authorized Ñ The apikey is not authorized', 401 );
+				throw new Exception ( 'Not Authorized - The apikey is not authorized', 401 );
 				break;
 			case 503 :
-				throw new Exception ( ' Service Unavailable Ñ The server cannot handle the request. Besides the normal server failures, it could also indicate that the client has been ÒthrottledÓ by sending too many requests', 503 );
+				throw new Exception ( ' Service Unavailable - The server cannot handle the request. Besides the normal server failures, it could also indicate that the client has been ÒthrottledÓ by sending too many requests', 503 );
 				break;
 			default :
 				throw new Exception ( $response->getBody (), 400 );
