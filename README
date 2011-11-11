@@ -1,0 +1,51 @@
+This is a quick throw together of a class that can interface with Google Safebrowsing Lookup API
+
+Its designed with Zend Framework in mind and reuses Zend_http_client
+
+Its almost complete, but not tidy, the following example are basic unit tests too, more to come when I have time
+
+@see http://code.google.com/apis/safebrowsing/lookup_guide.html
+
+Examples:
+
+$apiKey = 'ABQIAAAAPi7bK-oTHk52BUxl1GamKBQhNakko87ip_cnq8qpNla1QjD-7w';
+$options = array ('apikey' => $apiKey );
+$google = new Bf_Google_Safebrowsing ( $options );
+
+if (FALSE == $google->isListed ( 'http://www.phil-taylor.com' )) {
+	echo 'Test Passed<br/>';
+} else {
+	echo 'Test Failed<br/>';
+}
+
+if (TRUE == $google->isListed ( 'http://malware.testing.google.test/testing/malware/' )) {
+	echo 'Test Passed<br/>'; // I'm listed!!!
+} else {
+	echo 'Test Failed<br/>';
+}
+
+if ('malware' == $google->getReportedLists()) {
+	echo 'Test Passed<br/>'; // I'm listed!!!
+} else {
+	echo 'Test Failed<br/>';
+}
+
+
+
+// Test API KEY
+try {
+	$apiKey = 'NOSUCHKEY';
+	$options = array ('apikey' => $apiKey );
+	$google = new Bf_Google_Safebrowsing ( $options );
+	$google->isListed ( 'http://malware.testing.google.test/testing/malware/' );
+	
+	// If I get here then...
+	echo 'Test Failed1<br/>';
+
+} catch ( Exception $e ) {
+	if ($e->getCode () == 400) {
+		echo 'Test Passed<br/>';
+	} else {
+		echo 'Test Failed<br/>';
+	}
+}
